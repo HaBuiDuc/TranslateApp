@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_selected="true">
+        <vector
+                android:width="22dp"
+                android:height="20dp"
+                android:viewportWidth="22"
+                android:viewportHeight="20">
+            <path
+                    android:pathData="M10.049,1.927C10.348,1.005 11.652,1.005 11.951,1.927L13.47,6.601C13.604,7.013 13.988,7.291 14.421,7.291L19.335,7.292C20.304,7.292 20.707,8.531 19.923,9.101L15.947,11.99C15.597,12.244 15.45,12.696 15.584,13.108L17.103,17.781C17.402,18.703 16.347,19.469 15.564,18.899L11.588,16.011C11.237,15.756 10.763,15.756 10.412,16.011L6.436,18.899C5.653,19.469 4.598,18.703 4.897,17.781L6.416,13.108C6.55,12.696 6.403,12.244 6.053,11.99L2.077,9.101C1.293,8.531 1.696,7.292 2.665,7.292L7.579,7.291C8.012,7.291 8.396,7.013 8.53,6.601L10.049,1.927Z"
+                    android:strokeWidth="1.5"
+                    android:fillColor="@color/gold"
+                    android:strokeColor="@color/gold"/>
+        </vector>
+    </item>
+    <item android:state_selected="false">
+        <vector
+                android:width="22dp"
+                android:height="20dp"
+                android:viewportWidth="22"
+                android:viewportHeight="20">
+            <path
+                    android:pathData="M10.049,1.927C10.348,1.005 11.652,1.005 11.951,1.927L13.47,6.601C13.604,7.013 13.988,7.291 14.421,7.291L19.335,7.292C20.304,7.292 20.707,8.531 19.923,9.101L15.947,11.99C15.597,12.244 15.45,12.696 15.584,13.108L17.103,17.781C17.402,18.703 16.347,19.469 15.564,18.899L11.588,16.011C11.237,15.756 10.763,15.756 10.412,16.011L6.436,18.899C5.653,19.469 4.598,18.703 4.897,17.781L6.416,13.108C6.55,12.696 6.403,12.244 6.053,11.99L2.077,9.101C1.293,8.531 1.696,7.292 2.665,7.292L7.579,7.291C8.012,7.291 8.396,7.013 8.53,6.601L10.049,1.927Z"
+                    android:strokeWidth="1.5"
+                    android:fillColor="#00000000"
+                    android:strokeColor="#000000"/>
+        </vector>
+    </item>
+</selector>

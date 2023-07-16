@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Translate</string>
+
+    <string name="input_word_hint">Type here</string>
+    <string name="search_language_hint">Search language</string>
+    <string name="all_language">All language</string>
+    <string name="recent_language">Recent language</string>
+    <string name="image_des">TODO</string>
+</resources>
