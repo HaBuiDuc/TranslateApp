@@ -1,9 +1,17 @@
 <resources>
     <string name="app_name">Translate</string>
 
-    <string name="input_word_hint">Type here</string>
+    <string name="input_word_hint">Type here to translate</string>
+    <string name="speak_to_translate">Speak to translate</string>
+    <string name="translation">Translation</string>
     <string name="search_language_hint">Search language</string>
-    <string name="all_language">All language</string>
+    <string name="all_language">All Language</string>
     <string name="recent_language">Recent language</string>
     <string name="image_des">TODO</string>
+
+
+    <string name="speech">Speech</string>-->
+    <string name="text">Text</string>
+    <string name="favorite">Favorite</string>
+    <string name="picture">Picture</string>
 </resources>

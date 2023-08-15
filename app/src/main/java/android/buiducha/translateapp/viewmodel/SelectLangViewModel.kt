@@ -13,7 +13,7 @@ import android.util.Log
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 
-class SelectLanguageViewModel : ViewModel() {
+class SelectLangViewModel : ViewModel() {
     val language = Language
     private val _recentLang = MutableLiveData<List<String>?>()
     val recentLang: LiveData<List<String>?> get() = _recentLang

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+            android:id="@+id/voice_input"
+            android:icon="@drawable/icon_mc_phone_selector"
+            android:title="@string/speech"
+    />
+    <item
+            android:id="@+id/kb_input"
+            android:icon="@drawable/icon_pencil_selector"
+            android:title="@string/text"
+    />
+    <item
+            android:id="@+id/img_input"
+            android:icon="@drawable/icon_camera_selector"
+            android:title="@string/picture"
+    />
+    <item
+            android:id="@+id/word_favorite"
+            android:icon="@drawable/icon_star_selector"
+            android:title="@string/favorite"
+    />
+</menu>

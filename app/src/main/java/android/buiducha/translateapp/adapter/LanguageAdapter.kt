@@ -1,11 +1,13 @@
 package android.buiducha.translateapp.adapter
 
 import android.buiducha.translateapp.databinding.LanguageItemBinding
+import android.buiducha.translateapp.util.Language
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import java.util.*
 
 class LanguageAdapter(
     private var langList: List<String>,
@@ -28,6 +30,9 @@ class LanguageAdapter(
 
     fun setLangList(langList: List<String>) {
         this.langList = langList
+    }
+
+    companion object {
     }
 }
 class LanguageHolder(private val viewBinding: LanguageItemBinding) : ViewHolder(viewBinding.root) {

@@ -10,6 +10,9 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        maven {
+            url 'https://dl.bintray.com/pegasuscontrol/RippleCircleButton/'
+        }
     }
 }
 rootProject.name = "TranslateApp"

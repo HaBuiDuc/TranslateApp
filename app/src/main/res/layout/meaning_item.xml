@@ -13,7 +13,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
         <TextView
-                android:id="@+id/word_tv"
+                android:id="@+id/word_et"
                 android:layout_alignParentTop="true"
                 android:text="xin chao"
                 android:textColor="@color/black"
@@ -24,7 +24,7 @@
             />
         <View
                 android:id="@+id/word_view_separate"
-                android:layout_below="@+id/word_tv"
+                android:layout_below="@+id/word_et"
                 android:layout_marginTop="32dp"
                 android:layout_marginBottom="8dp"
                 android:layout_marginEnd="8dp"
@@ -88,14 +88,14 @@
                 android:layout_height="wrap_content">
             <ImageView
                     android:id="@+id/meaning_speaker"
-                    android:layout_toStartOf="@+id/meaning_fv"
+                    android:layout_toStartOf="@+id/meaning_cp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="16dp"
                     android:src="@drawable/icon_speaker"
                     android:contentDescription="TODO"/>
             <ImageView
-                    android:id="@+id/meaning_fv"
+                    android:id="@+id/meaning_cp"
                     android:layout_alignParentEnd="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

@@ -6,10 +6,7 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringSetPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.flow.flowOf
-import kotlinx.coroutines.flow.Flow as Flow
 
 object LanguageDSRepository {
     private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "recentLang")
@@ -26,7 +23,21 @@ object LanguageDSRepository {
             context.dataStore.edit { settings ->
                 settings[dataStoreKey] = lastValue.toSet()
             }
+        } else {
+            lastValue.removeAt(lastValue.indexOf(data))
+            context.dataStore.edit { settings ->
+                settings[dataStoreKey] = lastValue.toSet()
+            }
+            lastValue.add(lastValue.size, data)
+            context.dataStore.edit { settings ->
+                settings[dataStoreKey] = lastValue.toSet()
+            }
         }
+    }
+
+    suspend fun savePairLang(context: Context, source: String, target: String) {
+        saveLang(context, source, SOURCE_RECENT)
+        saveLang(context, target, DES_RECENT)
     }
 
     suspend fun readLang(context: Context, langKey: String): MutableList<String> {

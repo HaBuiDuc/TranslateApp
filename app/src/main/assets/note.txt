@@ -1,6 +1,6 @@
 need to be fixed in TranslateFragment(init SelectLanguage only one)
 auto fetch if internet connection is available
-change app ui
+change app ui (done)
 scroll view in Select Bottom Sheet need to be fixed
-add a favorite vocab page
-add a bottom navigation bar
+add a favorite vocab page (done)
+add a bottom navigation bar (done)
