@@ -1,8 +1,6 @@
 package android.buiducha.translateapp.fragment
 
-import android.animation.AnimatorInflater
 import android.annotation.SuppressLint
-import android.buiducha.translateapp.R
 import android.buiducha.translateapp.databinding.VoiceTranslateFragmentBinding
 import android.buiducha.translateapp.repository.LanguageDSRepository
 import android.buiducha.translateapp.util.checkAudioRecordPermission
@@ -15,18 +13,16 @@ import android.speech.RecognitionListener
 import android.speech.RecognizerIntent
 import android.speech.SpeechRecognizer
 import android.speech.tts.TextToSpeech
+import android.text.method.ScrollingMovementMethod
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.Animation
-import android.view.animation.AnimationUtils
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.util.*
 
@@ -34,14 +30,11 @@ class VoiceTranslateFragment : Fragment() {
     private lateinit var viewBinding: VoiceTranslateFragmentBinding
     private val viewModel: TranslateViewModel by viewModels()
     private lateinit var textToSpeech: TextToSpeech
-    private val buttonRecordingAnim: Animation by lazy {
-        AnimationUtils.loadAnimation(requireContext(), R.anim.button_recording_anim)
-    }
 
     private val speechRecognizer by lazy {
         SpeechRecognizer.createSpeechRecognizer(requireContext())
     }
-//    private val mediaPlayer = MediaPlayer.create(requireContext(), )
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         viewBinding = VoiceTranslateFragmentBinding.inflate(inflater, container, false)
         return viewBinding.root
@@ -59,20 +52,13 @@ class VoiceTranslateFragment : Fragment() {
 
         meaningTVSetup()
 
-        viewBinding.meaningSpeaker.setOnClickListener {
-
-            val result = textToSpeech.isLanguageAvailable(Locale.ENGLISH)
-            if (result == TextToSpeech.LANG_NOT_SUPPORTED) {
-                Log.d(TAG, "not support")
-                startActivity(Intent(TextToSpeech.Engine.ACTION_INSTALL_TTS_DATA))
-            }
-        }
-
         textToSpeechSetup()
 
         speakButtonSetup()
 
         copyButtonSetup()
+
+        wordTvSetup()
     }
 
     private fun copyButtonSetup() {
@@ -91,6 +77,11 @@ class VoiceTranslateFragment : Fragment() {
 
         viewBinding.apply {
             meaningSpeaker.setOnClickListener {
+                val result = textToSpeech.isLanguageAvailable(Locale.ENGLISH)
+                if (result == TextToSpeech.LANG_NOT_SUPPORTED) {
+                    Log.d(TAG, "not support")
+                    startActivity(Intent(TextToSpeech.Engine.ACTION_INSTALL_TTS_DATA))
+                }
                 val text = meaningTv.text.toString()
                 speak(text, textToSpeech)
             }
@@ -275,6 +266,7 @@ class VoiceTranslateFragment : Fragment() {
     }
 
     private fun meaningTVSetup() {
+        viewBinding.meaningTv.movementMethod = ScrollingMovementMethod()
         lifecycleScope.launch {
             viewModel.vocabulary.collect {vocab ->
                 if (vocab != null) {
@@ -282,6 +274,10 @@ class VoiceTranslateFragment : Fragment() {
                 }
             }
         }
+    }
+
+    private fun wordTvSetup() {
+        viewBinding.wordTv.movementMethod = ScrollingMovementMethod()
     }
 
     companion object {

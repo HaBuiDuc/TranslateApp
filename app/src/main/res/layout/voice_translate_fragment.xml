@@ -21,6 +21,8 @@
             android:textSize="32sp"
             android:textColor="@color/black"
             android:fontFamily="@font/public_sans_regular"
+            android:maxLines="3"
+            android:scrollbars="vertical"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/meaning_item"
@@ -113,6 +115,7 @@
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 android:fontFamily="@font/public_sans_regular"
+                android:scrollbars="vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
         />
@@ -169,9 +172,8 @@
                 android:layout_height="wrap_content"
                 android:padding="16dp"
                 android:background="@drawable/custom_oval"
-                android:layout_centerInParent="true"
                 app:srcCompat="@drawable/icon_mc_phone_solid"
-                android:contentDescription="@string/image_des"/>
+                android:contentDescription="@string/image_des" android:layout_centerInParent="true"/>
     </pl.bclogic.pulsator4droid.library.PulsatorLayout>
 <!--    <ImageView-->
 <!--            android:id="@+id/record_bt"-->

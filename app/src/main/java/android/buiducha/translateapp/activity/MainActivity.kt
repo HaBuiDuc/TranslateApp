@@ -3,6 +3,7 @@ package android.buiducha.translateapp.activity
 import android.buiducha.translateapp.R
 import android.buiducha.translateapp.databinding.ActivityMainBinding
 import android.buiducha.translateapp.fragment.FavoriteVocabFragment
+import android.buiducha.translateapp.fragment.ImageTranslateFragment
 import android.buiducha.translateapp.fragment.TextTranslateFragment
 import android.buiducha.translateapp.fragment.VoiceTranslateFragment
 import android.buiducha.translateapp.repository.LanguageDSRepository
@@ -13,6 +14,9 @@ import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import com.canhub.cropper.CropImageContract
+import com.canhub.cropper.CropImageView
+import com.google.android.gms.cast.framework.media.ImagePicker
 import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
@@ -49,6 +53,8 @@ class MainActivity : AppCompatActivity() {
                     loadFragment(textFragment)
                 }
                 R.id.img_input -> {
+                    val imageFragment = ImageTranslateFragment()
+                    loadFragment(imageFragment)
                 }
                 R.id.word_favorite -> {
                     langTest()

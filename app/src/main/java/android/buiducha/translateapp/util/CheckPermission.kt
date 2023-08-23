@@ -16,3 +16,16 @@ fun checkAudioRecordPermission(activity: Activity) {
         )
     }
 }
+
+fun checkCameraPermission(activity: Activity) {
+    if (ActivityCompat.checkSelfPermission(
+        activity,
+        android.Manifest.permission.CAMERA
+    ) != PackageManager.PERMISSION_GRANTED) {
+        ActivityCompat.requestPermissions(
+            activity,
+            arrayOf(android.Manifest.permission.CAMERA),
+            2
+        )
+    }
+}

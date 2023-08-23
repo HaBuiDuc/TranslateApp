@@ -43,6 +43,7 @@ dependencies {
     implementation 'com.google.android.material:material:1.9.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'androidx.navigation:navigation-fragment:2.6.0'
+    implementation 'com.google.android.gms:play-services-cast-framework:21.3.0'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
@@ -57,6 +58,8 @@ dependencies {
 
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1"
     implementation("androidx.fragment:fragment-ktx:1.6.1")
+    implementation "androidx.activity:activity-ktx:1.7.2"
+
 
     implementation "androidx.datastore:datastore-preferences:1.1.0-alpha04"
 
@@ -73,5 +76,26 @@ dependencies {
     kapt "android.arch.persistence.room:compiler:1.1.1"
     kapt 'androidx.room:room-compiler:2.5.2'
 
+    //pulse button
     implementation 'pl.bclogic:pulsator4droid:1.0.3'
+
+    // Image to text
+    // To recognize Latin script
+    implementation 'com.google.android.gms:play-services-mlkit-text-recognition:19.0.0'
+    // To recognize Chinese script
+    implementation 'com.google.android.gms:play-services-mlkit-text-recognition-chinese:16.0.0'
+    // To recognize Devanagari script
+    implementation 'com.google.android.gms:play-services-mlkit-text-recognition-devanagari:16.0.0'
+    // To recognize Japanese script
+    implementation 'com.google.android.gms:play-services-mlkit-text-recognition-japanese:16.0.0'
+    // To recognize Korean script
+    implementation 'com.google.android.gms:play-services-mlkit-text-recognition-korean:16.0.0'
+//    implementation 'com.google.mlkit:text-recognition:16.0.0'
+
+
+//    implementation 'com.github.dhaval2404:imagepicker-support:1.7.1'
+//    implementation 'com.github.dhaval2404:imagepicker:2.1'
+//    implementation 'com.github.krokyze:ucropnedit:2.2.8'
+
+    implementation("com.vanniktech:android-image-cropper:4.5.0")
 }

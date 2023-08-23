@@ -96,7 +96,7 @@
                 android:hint="@string/input_word_hint"
                 android:paddingBottom="32dp"
                 android:fontFamily="@font/public_sans_regular"
-                android:maxLines="10"
+                android:maxLines="5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:autofillHints="" android:inputType="textMultiLine" tools:ignore="LabelFor"/>
@@ -147,12 +147,15 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp">
+
         <TextView
                 android:id="@+id/meaning_tv"
                 android:layout_alignParentTop="true"
                 android:hint="@string/translation"
                 android:textColor="@color/black"
                 android:textSize="20sp"
+                android:maxLines="5"
+                android:scrollbars="vertical"
                 android:fontFamily="@font/public_sans_regular"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

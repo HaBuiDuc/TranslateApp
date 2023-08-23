@@ -1,8 +1,11 @@
+import org.gradle.api.initialization.resolve.RepositoriesMode
+
 pluginManagement {
     repositories {
         google()
         mavenCentral()
         gradlePluginPortal()
+        maven { url='https://jitpack.io'}
     }
 }
 dependencyResolutionManagement {
@@ -11,7 +14,7 @@ dependencyResolutionManagement {
         google()
         mavenCentral()
         maven {
-            url 'https://dl.bintray.com/pegasuscontrol/RippleCircleButton/'
+            url 'https://jitpack.io'
         }
     }
 }

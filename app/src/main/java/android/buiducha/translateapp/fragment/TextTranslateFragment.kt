@@ -11,18 +11,16 @@ import android.buiducha.translateapp.util.clearText
 import android.buiducha.translateapp.util.copyToClipboard
 import android.buiducha.translateapp.util.textToSpeechCreate
 import android.buiducha.translateapp.viewmodel.TranslateViewModel
-import android.content.ClipData
-import android.content.ClipboardManager
 import android.content.Context
 import android.os.Bundle
 import android.speech.tts.TextToSpeech
+import android.text.method.ScrollingMovementMethod
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
-import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -62,6 +60,8 @@ class TextTranslateFragment : Fragment() {
         textToSpeechSetup()
 
         speakButtonSetup()
+
+        meaningTvSetup()
    }
 
     private fun speakButtonSetup() {
@@ -118,20 +118,15 @@ class TextTranslateFragment : Fragment() {
         }
     }
 
-//    private fun textToSpeechCreate() =
-//        TextToSpeech(requireContext()) {
-//            if (it == TextToSpeech.SUCCESS) {
-//                Log.d(TAG, "Text to speech create successfully")
-//            } else if (it == TextToSpeech.ERROR) {
-//                Log.e(TAG, "Text to speech create failure")
-//            }
-//        }
-
     private fun copyButtonSetup() {
         viewBinding.meaningCp.setOnClickListener {
             val data = viewBinding.meaningTv.text.toString()
             copyToClipboard(requireContext(), data)
         }
+    }
+
+    private fun meaningTvSetup() {
+        viewBinding.meaningTv.movementMethod = ScrollingMovementMethod()
     }
 
     private fun onTranslateListener() {
