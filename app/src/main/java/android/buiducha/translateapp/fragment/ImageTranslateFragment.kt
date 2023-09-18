@@ -5,15 +5,16 @@ import android.buiducha.translateapp.R
 import android.buiducha.translateapp.databinding.ImageTranslateFragmentBinding
 import android.buiducha.translateapp.repository.FavoriteRepository
 import android.buiducha.translateapp.repository.LanguageDSRepository
+import android.buiducha.translateapp.util.checkCameraPermission
 import android.buiducha.translateapp.util.copyToClipboard
 import android.buiducha.translateapp.util.textToSpeechCreate
 import android.buiducha.translateapp.viewmodel.TranslateViewModel
 import android.content.Context
-import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
 import android.speech.tts.TextToSpeech
 import android.text.method.ScrollingMovementMethod
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -36,7 +37,6 @@ import com.google.mlkit.vision.common.InputImage
 import com.google.mlkit.vision.text.TextRecognition
 import com.google.mlkit.vision.text.latin.TextRecognizerOptions
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import java.io.File
 import java.util.*
@@ -95,13 +95,6 @@ class ImageTranslateFragment : Fragment() {
         AnimationUtils.loadAnimation(
             requireContext(),
             R.anim.camerabt_appear_anim
-        )
-    }
-
-    private val cameraButtonDisappearAnim by lazy {
-        AnimationUtils.loadAnimation(
-            requireContext(),
-            R.anim.camerabt_disappear_anim
         )
     }
 
@@ -243,8 +236,10 @@ class ImageTranslateFragment : Fragment() {
             val inputImage = InputImage.fromFilePath(requireContext(), imageUri)
             lifecycleScope.launch {
                 textRecognition.process(inputImage).addOnSuccessListener {text ->
-                    viewModel.getTranslate(text.text)
-                    viewBinding.wordEt.text = text.text
+                    Log.d("This is a log", text.text.replace("\n"," "))
+                    val newText = text.text.replace("\n"," ")
+                    viewModel.getTranslate(newText)
+                    viewBinding.wordEt.text = newText
                 }.addOnFailureListener {
                     it.printStackTrace()
                 }
@@ -259,7 +254,7 @@ class ImageTranslateFragment : Fragment() {
         if (result.isSuccessful) {
             // Use the returned uri.
             val uriContent = result.uriContent
-            val uriFilePath = result.getUriFilePath(requireContext()) // optional usage
+            result.getUriFilePath(requireContext()) // optional usage
             if (uriContent != null) {
                 recognizeText(uriContent)
             }
@@ -317,7 +312,9 @@ class ImageTranslateFragment : Fragment() {
 
     private fun getTranslateByCamera() {
         Toast.makeText(requireContext(), "camera select", Toast.LENGTH_SHORT).show()
-        startCrop(CAMERA_OPTION)
+        if (checkCameraPermission(requireActivity())) {
+            startCrop(CAMERA_OPTION)
+        }
     }
 
     private fun getTranslateByPhoto() {
@@ -327,7 +324,7 @@ class ImageTranslateFragment : Fragment() {
 
     private fun groupButtonCollapse() {
         viewBinding.apply {
-            cameraBt.startAnimation(cameraButtonDisappearAnim)
+//            cameraBt.startAnimation(cameraButtonDisappearAnim)
             photoBt.startAnimation(photoButtonDisappearAnim)
             cameraBt.visibility = View.GONE
             photoBt.visibility = View.GONE
@@ -434,19 +431,30 @@ class ImageTranslateFragment : Fragment() {
             }
         }
     }
+
     private fun languageSwapSetup() {
         viewBinding.apply {
             languageSwap.apply {
                 setOnClickListener {
-                    val tmp = destinationLanguage.text
-                    destinationLanguage.text = sourceLanguage.text
-                    sourceLanguage.text = tmp
+                    val oldDes  = destinationLanguage.text
+                    val oldSource = sourceLanguage.text
+                    destinationLanguage.text = oldSource
+                    sourceLanguage.text = oldDes
                     viewLifecycleOwner.lifecycleScope.launch {
-                        LanguageDSRepository.savePairLang(
-                            requireContext(),
-                            tmp.toString(),
-                            destinationLanguage.toString()
-                        )
+                        oldDes?.let {
+                            LanguageDSRepository.saveLang(
+                                requireContext(),
+                                oldDes.toString(),
+                                LanguageDSRepository.SOURCE_RECENT
+                            )
+                        }
+                        oldSource?.let {
+                            LanguageDSRepository.saveLang(
+                                requireContext(),
+                                oldSource.toString(),
+                                LanguageDSRepository.DES_RECENT
+                            )
+                        }
                     }
                 }
             }

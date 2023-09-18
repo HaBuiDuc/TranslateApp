@@ -204,14 +204,27 @@ class TextTranslateFragment : Fragment() {
         viewBinding.apply {
             languageSwap.apply {
                 setOnClickListener {
-                    val tmp = destinationLanguage.text
-                    destinationLanguage.text = sourceLanguage.text
-                    sourceLanguage.text = tmp
+                    val oldDes  = destinationLanguage.text
+                    val oldSource = sourceLanguage.text
+                    destinationLanguage.text = oldSource
+                    sourceLanguage.text = oldDes
                     viewLifecycleOwner.lifecycleScope.launch {
-                        saveLang(requireContext(), tmp.toString(), SOURCE_RECENT)
-                        saveLang(requireContext(), destinationLanguage.text.toString(), DES_RECENT)
-                        getTranslate()
+                        oldDes?.let {
+                            saveLang(
+                                requireContext(),
+                                oldDes.toString(),
+                                SOURCE_RECENT
+                            )
+                        }
+                        oldSource?.let {
+                            saveLang(
+                                requireContext(),
+                                oldSource.toString(),
+                                DES_RECENT
+                            )
+                        }
                     }
+                    getTranslate()
                 }
             }
         }
@@ -232,6 +245,7 @@ class TextTranslateFragment : Fragment() {
                 saveLang(requireContext(), language, DES_RECENT)
             }
         }
+        getTranslate()
     }
 
     // use imm to hide soft keyboard when press outside edittext and clear edittext focus

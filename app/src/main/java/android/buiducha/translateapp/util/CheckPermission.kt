@@ -17,7 +17,7 @@ fun checkAudioRecordPermission(activity: Activity) {
     }
 }
 
-fun checkCameraPermission(activity: Activity) {
+fun checkCameraPermission(activity: Activity): Boolean {
     if (ActivityCompat.checkSelfPermission(
         activity,
         android.Manifest.permission.CAMERA
@@ -27,5 +27,7 @@ fun checkCameraPermission(activity: Activity) {
             arrayOf(android.Manifest.permission.CAMERA),
             2
         )
+        return false
     }
+    return true
 }

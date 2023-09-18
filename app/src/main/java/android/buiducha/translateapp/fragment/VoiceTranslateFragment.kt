@@ -120,15 +120,6 @@ class VoiceTranslateFragment : Fragment() {
 
     }
 
-//    private fun audioVisualizerSetup() {
-//        viewBinding.audioVisualizer.apply {
-//            visibility = View.VISIBLE
-//            setColor(R.color.black)
-//            setDensity(60F)
-//
-//        }
-//    }
-
     private fun speechRecognizerSetup() {
         speechRecognizer.setRecognitionListener(object : RecognitionListener {
             override fun onReadyForSpeech(p0: Bundle?) {
@@ -233,15 +224,25 @@ class VoiceTranslateFragment : Fragment() {
         viewBinding.apply {
             languageSwap.apply {
                 setOnClickListener {
-                    val tmp = destinationLanguage.text
-                    destinationLanguage.text = sourceLanguage.text
-                    sourceLanguage.text = tmp
+                    val oldDes  = destinationLanguage.text
+                    val oldSource = sourceLanguage.text
+                    destinationLanguage.text = oldSource
+                    sourceLanguage.text = oldDes
                     viewLifecycleOwner.lifecycleScope.launch {
-                        LanguageDSRepository.savePairLang(
-                            requireContext(),
-                            tmp.toString(),
-                            destinationLanguage.toString()
-                        )
+                        oldDes?.let {
+                            LanguageDSRepository.saveLang(
+                                requireContext(),
+                                oldDes.toString(),
+                                LanguageDSRepository.SOURCE_RECENT
+                            )
+                        }
+                        oldSource?.let {
+                            LanguageDSRepository.saveLang(
+                                requireContext(),
+                                oldSource.toString(),
+                                LanguageDSRepository.DES_RECENT
+                            )
+                        }
                     }
                 }
             }
